@@ -1,0 +1,15 @@
+{
+  "name": "tsjoi",
+  "version": "0.1.0",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "typescript": "^3.6.2"
+  },
+  "bin": {
+    "tsjoi": "./lib/tsjoi.js"
+  }
+}
