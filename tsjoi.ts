@@ -88,7 +88,7 @@ function propList2joi(members: ts.NodeArray<ts.TypeElement>, indent: number) {
 function makeTypeGuard(name: string, type: string, schema: string): string {
   return (
     `export function ${name}(obj: any): obj is T.${type} {\n` +
-    `  return ${schema}.validate().error === null\n` +
+    `  return ${schema}.validate(obj).error === null\n` +
     `}\n`
   )
 }
