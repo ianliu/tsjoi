@@ -19,6 +19,7 @@ function union2joi(tp: ts.UnionTypeNode): string {
   if (_.every(tp.types, x => ts.isLiteralTypeNode(x) && ts.isStringLiteral(x.literal))) {
     const values = tp.types
       .map(x => ((x as ts.LiteralTypeNode).literal as ts.StringLiteral).text)
+      .map(x => `"${x}"`)
     return `Joi.string().valid([${values.join(", ")}])`
   }
 
