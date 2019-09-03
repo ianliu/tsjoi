@@ -11,6 +11,7 @@ interface User {
   name: string
   age?: number
   address: string | null
+  status: "opened" | "closed"
 }
 ```
 
@@ -24,7 +25,8 @@ import * as T from './foo'
 export const User = Joi.object({
   name: Joi.string().required(),
   age: Joi.number(),
-  address: Joi.string().allow(null).required()
+  address: Joi.string().allow(null).required(),
+  status: Joi.string().valid(["opened", "closed"]).required()
 })
 export function isUser(obj: any): obj is T.User {
   return User.validate(obj).error === null
