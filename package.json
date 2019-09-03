@@ -1,7 +1,8 @@
 {
-  "name": "tsjoi",
+  "name": "@ianliu/tsjoi",
   "version": "0.2.0",
-  "license": "GPL-2.0-or-later",
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "build": "tsc"
   },
@@ -15,5 +16,9 @@
   },
   "dependencies": {
     "lodash": "^4.17.15"
-  }
+  },
+  "description": "Convert TypeScript interfaces to Joi schemas",
+  "main": "lib/tsjoi.js",
+  "repository": "git@github.com:ianliu/tsjoi.git",
+  "author": "Ian Liu Rodrigues <ian.liu88@gmail.com>"
 }
