@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import * as ts from 'typescript'
-import { readFileSync, writeFileSync } from 'fs'
+import fs from 'fs'
+import _ from 'lodash'
 
 let SUFFIX: string = ''
 
@@ -114,7 +115,7 @@ function stmt2joi(node: ts.Statement): string | null {
 
 interface Options {
   input: string
-  output: string
+  output: number
   suffix?: string
 }
 
@@ -174,20 +175,23 @@ function getOpts(): Options {
     usage()
 
   const input = args[0] === '-' ? '/dev/stdin' : args[0]
-  const output = args[1] || '/dev/stdout'
+  const output = args[1] ? fs.openSync(args[1], 'w') : 1
 
-  return {
+  const opts: Options = {
     input,
     output,
-    suffix
   }
 
+  if (suffix)
+    opts.suffix = suffix
+
+  return opts
 }
 
 function main() {
   const opts = getOpts()
-  const txt = readFileSync(opts.input, { encoding: 'utf-8' })
-  writeFileSync(opts.output, ts2joi(txt, opts), { encoding: 'utf-8' })
+  const txt = fs.readFileSync(opts.input, { encoding: 'utf-8' })
+  fs.writeSync(opts.output, ts2joi(txt, opts))
 }
 
 if (require.main === module) {
