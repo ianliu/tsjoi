@@ -27,6 +27,6 @@ export const User = Joi.object({
   address: Joi.string().allow(null).required()
 })
 export function isUser(obj: any): obj is T.User {
-  return User.validate().error === null
+  return User.validate(obj).error === null
 }
 ```
