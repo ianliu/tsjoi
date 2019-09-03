@@ -16,6 +16,12 @@ function union2joi(tp: ts.UnionTypeNode): string {
     return type2joi(notnull, false, 0) + '.allow(null)'
   }
 
+  if (_.every(tp.types, x => ts.isLiteralTypeNode(x) && ts.isStringLiteral(x.literal))) {
+    const values = tp.types
+      .map(x => ((x as ts.LiteralTypeNode).literal as ts.StringLiteral).text)
+    return `Joi.string().valid([${values.join(", ")}])`
+  }
+
   throw new Error(`Cannot convert the following type yet: ${tp.getText()}`)
 }
 
