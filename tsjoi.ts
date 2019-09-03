@@ -2,9 +2,15 @@
 
 import * as ts from 'typescript'
 import fs from 'fs'
-import _ from 'lodash'
 
 let SUFFIX: string = ''
+
+function all<T>(predicate: (x: T) => boolean, array: ReadonlyArray<T>): boolean {
+  for (const x of array)
+    if (!predicate(x))
+      return false
+  return true
+}
 
 function union2joi(tp: ts.UnionTypeNode): string {
   const types = tp.types.map(x => x.kind)
@@ -16,7 +22,7 @@ function union2joi(tp: ts.UnionTypeNode): string {
     return type2joi(notnull, false, 0) + '.allow(null)'
   }
 
-  if (_.every(tp.types, x => ts.isLiteralTypeNode(x) && ts.isStringLiteral(x.literal))) {
+  if (all(x => ts.isLiteralTypeNode(x) && ts.isStringLiteral(x.literal), tp.types)) {
     const values = tp.types
       .map(x => ((x as ts.LiteralTypeNode).literal as ts.StringLiteral).text)
       .map(x => `"${x}"`)

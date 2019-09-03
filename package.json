@@ -14,9 +14,7 @@
   "bin": {
     "tsjoi": "./lib/tsjoi.js"
   },
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
+  "dependencies": {},
   "description": "Convert TypeScript interfaces to Joi schemas",
   "main": "lib/tsjoi.js",
   "repository": "git@github.com:ianliu/tsjoi.git",
