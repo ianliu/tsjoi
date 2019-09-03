@@ -1,7 +1,7 @@
 # tsjoi
 Tool to convert TypeScript interfaces to Joi schemas
 
-# Example
+## Example
 
 Given the following TypeScript file:
 
