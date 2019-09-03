@@ -7,7 +7,6 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.138",
     "@types/node": "^12.7.3",
     "typescript": "^3.6.2"
   },
