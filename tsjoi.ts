@@ -6,18 +6,17 @@ import _ from 'lodash'
 
 let SUFFIX: string = ''
 
-function union2joi(tp: ts.UnionTypeNode) {
-  if (tp.types.length === 2) {
-    const [t1, t2] = tp.types
-    const nullable = t1.kind === ts.SyntaxKind.NullKeyword || t2.kind === ts.SyntaxKind.NullKeyword
-    if (!nullable) {
-      throw new Error(`Can only convert nullable types yet: ${tp.getText()}`)
-    }
-    const [notnull, Null] = t1.kind === ts.SyntaxKind.NullKeyword ? [t2, t1] : [t1, t2]
-    return `Joi.${notnull.getText()}().allow(null)`
-  } else {
-    throw new Error(`Cannot convert union types with more than 2 types yet: ${tp.getText()}`)
+function union2joi(tp: ts.UnionTypeNode): string {
+  const types = tp.types.map(x => x.kind)
+
+  if (tp.types.length === 2 && types.includes(ts.SyntaxKind.NullKeyword)) {
+    const notnull = types[0] === ts.SyntaxKind.NullKeyword
+      ? tp.types[1]
+      : tp.types[0]
+    return type2joi(notnull, false, 0) + '.allow(null)'
   }
+
+  throw new Error(`Cannot convert the following type yet: ${tp.getText()}`)
 }
 
 function array2joi(tp: ts.ArrayTypeNode): string {
