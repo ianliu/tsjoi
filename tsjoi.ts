@@ -21,7 +21,7 @@ function union2joi(tp: ts.UnionTypeNode): string {
 
 function array2joi(tp: ts.ArrayTypeNode): string {
   const elementType = type2joi(tp.elementType, false, 0)
-  return `Joi.array().items(Joi.${elementType})`
+  return `Joi.array().items(${elementType})`
 }
 
 function literal2joi(tp: ts.TypeLiteralNode, indent: number): string {
