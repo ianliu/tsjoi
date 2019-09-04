@@ -17,5 +17,7 @@
   "description": "Convert TypeScript interfaces to Joi schemas",
   "main": "lib/tsjoi.js",
   "repository": "git@github.com:ianliu/tsjoi.git",
-  "author": "Ian Liu Rodrigues <ian.liu88@gmail.com>"
+  "author": "Ian Liu Rodrigues <ian.liu88@gmail.com>",
+  "keywords": ["typescript", "joi", "transpiler"],
+  "homepage": "https://github.com/ianliu/tsjoi"
 }
