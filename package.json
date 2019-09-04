@@ -1,6 +1,6 @@
 {
   "name": "@ianliu/tsjoi",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "private": false,
   "scripts": {
@@ -18,6 +18,10 @@
   "main": "lib/tsjoi.js",
   "repository": "git@github.com:ianliu/tsjoi.git",
   "author": "Ian Liu Rodrigues <ian.liu88@gmail.com>",
-  "keywords": ["typescript", "joi", "transpiler"],
+  "keywords": [
+    "typescript",
+    "joi",
+    "transpiler"
+  ],
   "homepage": "https://github.com/ianliu/tsjoi"
 }
